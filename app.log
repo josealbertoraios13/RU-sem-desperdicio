@@ -1,0 +1,45 @@
+2026-04-21 19:02:05,792 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:02:05,795 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:02:13,808 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:02:49,055 - database.database - INFO - Database connection pool closed
+2026-04-21 19:02:50,606 - database.database - INFO - Database connection pool closed
+2026-04-21 19:05:16,063 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:05:16,067 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:05:23,716 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:06:11,606 - database.database - INFO - Database connection pool closed
+2026-04-21 19:06:12,804 - database.database - INFO - Database connection pool closed
+2026-04-21 19:13:45,363 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:13:45,368 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:13:55,222 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:14:02,316 - database.database - INFO - Database connection pool closed
+2026-04-21 19:14:11,925 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:14:19,875 - database.database - INFO - Database connection pool closed
+2026-04-21 19:14:20,887 - database.database - INFO - Database connection pool closed
+2026-04-21 19:14:39,771 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:14:39,775 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:14:50,997 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:15:00,699 - database.database - INFO - Database connection pool closed
+2026-04-21 19:15:02,572 - database.database - INFO - Database connection pool closed
+2026-04-21 19:15:10,845 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:15:10,851 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:15:20,401 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:15:35,475 - database.database - INFO - Database connection pool closed
+2026-04-21 19:15:37,364 - database.database - INFO - Database connection pool closed
+2026-04-21 19:47:18,978 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:47:18,983 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:47:28,248 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:48:48,776 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:48:48,783 - database.database - ERROR - Error in delete_schedule: invalid input syntax for type date: "22//0/4/20"
+LINE 1: ... AND tipo_refeicao = 'jantar' AND data_refeicao = '22//0/4/2...
+                                                             ^
+
+2026-04-21 19:49:49,373 - database.database - INFO - Database connection pool closed
+2026-04-21 19:49:49,525 - database.database - INFO - Database connection pool closed
+2026-04-21 19:49:49,686 - database.database - INFO - Database connection pool closed
+2026-04-21 19:52:14,364 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:52:14,368 - database.database - INFO - Database schema initialized successfully
+2026-04-21 19:52:25,149 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:52:31,271 - database.database - INFO - PostgreSQL connection pool initialized successfully
+2026-04-21 19:52:36,165 - database.database - INFO - Database connection pool closed
+2026-04-21 19:53:22,185 - database.database - INFO - Database connection pool closed
+2026-04-21 19:53:22,186 - database.database - INFO - Database connection pool closed

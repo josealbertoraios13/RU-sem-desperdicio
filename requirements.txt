@@ -1,0 +1,10 @@
+# Core dependencies
+bcrypt==4.1.2
+curses-menu==0.6.2
+pyfiglet==1.0.4
+
+# PostgreSQL dependencies
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.29
+alembic==1.13.1
+python-dotenv==1.0.0
