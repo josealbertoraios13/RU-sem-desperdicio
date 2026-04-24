@@ -1,13 +1,11 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15-alpine
     container_name: smartru-postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-smartru_db}
-      POSTGRES_USER: ${POSTGRES_USER:-smartru_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-smartru_password}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5433:5432"
     volumes:
@@ -30,10 +28,10 @@ services:
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
-      POSTGRES_DB: ${POSTGRES_DB:-smartru_db}
-      POSTGRES_USER: ${POSTGRES_USER:-smartru_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-smartru_password}
-      APP_ENV: ${APP_ENV:-development}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      APP_ENV: ${APP_ENV}
     volumes:
       - .:/app
     stdin_open: true

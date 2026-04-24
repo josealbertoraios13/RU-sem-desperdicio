@@ -20,11 +20,14 @@ class HistoryController(Controller):
         for result in results:
             scheduler_id, schedule_type, schedule_date, schedule_time  = result
 
+            # Converte o horário para string no formato HH:MM se for um objeto time
+            horario_str = schedule_time.strftime("%H:%M") if schedule_time else None
+
             m_dict = {
                 "refeicao_id" : scheduler_id,
                 "data" : schedule_date.strftime("%d/%m/%Y"),
                 "refeicao" : schedule_type,
-                "horario" : schedule_time
+                "horario" : horario_str
             } 
 
             schedules.append(m_dict)

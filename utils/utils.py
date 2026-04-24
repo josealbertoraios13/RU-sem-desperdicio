@@ -267,8 +267,8 @@ class Utils:
     @staticmethod
     def earliest_datetime(item: dict) -> "datetime.datetime | None":
         """
-        Retorna o datetime mais cedo entre horario_almoco e horario_jantar
-        do agendamento, ou None se nenhum horário estiver preenchido.
+        Retorna o datetime do horário do agendamento,
+        ou None se nenhum horário estiver preenchido.
         """
         date_str = item.get("data", "")
         try:
@@ -296,12 +296,7 @@ class Utils:
     
     @staticmethod
     def is_expired(item: dict, now: datetime.datetime) -> bool:
-        """Retorna True se todos os horários do agendamento já passaram."""
-        dt = Utils.earliest_datetime(item)
-        if dt is None:
-            return True
-
-        # Se tem dois horários, só expira quando o último passou
+        """Retorna True se o horário do agendamento já passou."""
         date_str = item.get("data", "")
         try:
             day, month, year = date_str.split("/")
@@ -309,22 +304,19 @@ class Utils:
         except (ValueError, AttributeError):
             return True
 
-        latest = None
-        for key in ("horario_almoco", "horario_jantar"):
-            t_str = item.get(key)
-            if t_str:
-                try:
-                    hh, mm = t_str.split(":")
-                    candidate = datetime.datetime(
-                        base.year, base.month, base.day, int(hh), int(mm))
-                    if latest is None or candidate > latest:
-                        latest = candidate
-                except (ValueError, AttributeError):
-                    pass
-
-        if latest is None:
+        # Procura pelo campo horario (formato HH:MM)
+        horario_str = item.get("horario")
+        if not horario_str:
+            # Se não tem horário, compara apenas pela data
             return datetime.datetime(base.year, base.month, base.day) < now
-        return latest < now
+        
+        try:
+            hh, mm = horario_str.split(":")
+            schedule_datetime = datetime.datetime(
+                base.year, base.month, base.day, int(hh), int(mm))
+            return schedule_datetime < now
+        except (ValueError, AttributeError):
+            return True
 
     @staticmethod
     def format_label(item: dict, expired: bool, x_max: int) -> str:
