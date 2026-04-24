@@ -1,6 +1,6 @@
 # Smart RU
 ## RU <span style="color: green;">Sem</span> Disperdício
-### Sistem inteligente para reduzir desperdício de alimentos
+### Sistema inteligente para reduzir desperdício de alimentos
 
 <span style="font-weight: bolder;">Aplicação:</span> Sistemas de Informação aplicados à gestão do <span style="font-weight: bolder;">Restaurante Universitário da UFRPE </span>com foco em sustentabilidade
 
@@ -20,9 +20,17 @@
     <li>Dashboard da direção do RU</li>
 </ol>
 
-Projeto interdiciplinar - Sistemas de Informação | Desenvolvido por Tomás Kavela e José Alberto"
+Projeto interdisciplinar - Sistemas de Informação | Desenvolvido por Tomás Kavela e José Alberto
 
-## Antes de tudo crie um Ambiente Virtual
+## Instalação:
+Antes de qualquer instalação, você precisa saber o que já deve ter instalado (Python 3.11+, Git, Docker).
+
+Clone o repositório com o seguinte comando:
+```bash
+git clone https://github.com/josealbertoraios13/RU-sem-desperdicio.git
+```
+
+### Antes de tudo crie um Ambiente Virtual
 **Linux/MacOs**
 ```bash
 python3 -m venv venv # Cria o ambiente
@@ -32,6 +40,8 @@ source venv/bin/activate # Ativa o ambiente
 pip install --upgrade pip # Atualiza o pip
 pip install -r requirements.txt # Instala dependências descritas no arquivo requirements.txt
 ```
+
+**Windows**
 ```bash
 python -m venv venv
 
@@ -41,16 +51,16 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## Dependências do Python (requirements.txt):
+### Dependências (requirements.txt):
 
-### Core dependencies
+#### Core dependencies
 <ol>
     <li>bcrypt==4.1.2</li>
-    <li>ncurses==6.4</li>
     <li>pyfiglet==1.0.4</li>
+    <li>windows-curses==2.3.3  # necessário apenas no Windows</li>
 </ol>
 
-### PostgreSQL dependencies
+#### PostgreSQL dependencies
 <ol>
     <li>psycopg2-binary==2.9.9</li>
     <li>SQLAlchemy==2.0.29</li>
@@ -58,14 +68,49 @@ pip install -r requirements.txt
     <li>python-dotenv==1.0.0</li>
 </ol>
 
-Para instalar as dependências automáticamente e ter um feedback dinâmico rode:
+Para instalar as dependências automaticamente e ter um feedback dinâmico rode:
 ```bash
     python3 setup.py
 ```
 
-## Instalação do Docker
+### DockerFile
 
-### Windows e macOS:
+#### Contém informações de dependências
+
+```bash
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Instala dependências do sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copia e instala as dependências do python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Cria um usuário que não é root
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# Define variáveis de ambiente
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+# Roda o programa
+CMD ["python", "main.py"]
+```
+
+### Instalação do Docker
+
+#### Windows e macOS:
 
 A forma mais simples é baixar o Docker Desktop:
 
@@ -76,10 +121,9 @@ A forma mais simples é baixar o Docker Desktop:
     No Windows, certifique-se de que o WSL2 está ativado.
     O Docker Desktop já inclui o Docker Compose por padrão.
 
-## Linux (Ubuntu/Debian):
+### Linux (Ubuntu/Debian):
 
-### Execute os comandos no terminal:
-
+#### Execute os comandos no terminal:
 ```bash
 # Atualize e instale dependências
 sudo apt update
@@ -103,48 +147,14 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-## Depois de Instalar o Docker:
+### Depois de Instalar o Docker:
 ```bash
 docker compose up -d
 ```
 Ou se você estiver usando o Visual Studio Code, abra o arquivo docker-compose.yml e instale a extensão que será recomendada, volte para o código .yml e você verá um botão escrito: "Run all services" clique nele.
-## DockFile
 
-### Comtém informações de dependências
-
-```bash
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Instala dependências do sistema
-RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copia e instala as dependências do phyton
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-# Cria um usuáro que não é root
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
-USER appuser
-
-# Define variáveis de ambiente
-ENV PYTHONPATH=/app
-ENV PYTHONUNBUFFERED=1
-
-# Roda o programa
-CMD ["python", "main.py"]
-```
-
-## Variáveis de Ambiente
-### Você deve criar um arquivo .env e adicionar
+### Variáveis de Ambiente
+#### Você deve criar um arquivo .env e adicionar
 
 dotenv_exemplo:
 ```bash
@@ -169,10 +179,10 @@ APP_DEBUG=True
 BCRYPT_ROUNDS=12
 ```
 
-## App.log
-### Todas as mensagens de erro e debug são direcionadas para este arquivo
+### App.log
+#### Todas as mensagens de erro e debug são direcionadas para este arquivo
 
-## Para rodar o projeto: 
+### Para rodar o projeto: 
 ```bash
 python3 main.py
 ```
