@@ -40,7 +40,7 @@ class SetupReport:  # Agrega todos os resultados do processo
     results: list[SetupResult] = field(default_factory=list)
 
     # Adiciona um novo resultado à lista e retorna o status booleano
-    def add(self, name: str, passed: bool, detail: str = None) -> bool:
+    def add(self, name, passed, detail = None):
         self.results.append(SetupResult(name, passed, detail))
         return passed
 
