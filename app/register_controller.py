@@ -1,23 +1,25 @@
 from .controller import Controller
 from model import MenuButtons, MenuInput
 from utils import Utils
+from curses import window
+from database import DataBase
 
 class RegisterController(Controller):
-    def __init__(self, stdscr, data):
+    def __init__(self, stdscr : window, data : DataBase):
         super().__init__(stdscr, data)
-        self.last_form_input = None
+        self.data = data
+        self.cancelled = False
 
-    def run(self):
+    def run(self)-> None:
         user_type, email_label = self._show_user_type_menu()
 
-        if not user_type:
+        if not user_type and not email_label:
             return
         
         while True:
             form_data = self._show_registration_form(user_type, email_label)
 
-            # Se foi cancelado (ESC), sai sem aviso
-            if form_data is None and self.last_form_input and self.last_form_input.cancelled:
+            if form_data is None and self.cancelled:
                 return
 
             # Se validação falhou, tenta novamente
@@ -29,12 +31,8 @@ class RegisterController(Controller):
             self._show_warning("Avisos", [data_base_message])
             return
 
-    def _show_user_type_menu(self):
-        options = [
-            "[   Estudante   ]", 
-            "[   Funcionário   ]",
-            "[   Convidado   ]",
-            ]
+    def _show_user_type_menu(self) -> tuple:
+        options = ["[   Estudante   ]", "[   Funcionário   ]","[   Convidado   ]",]
         menu_register_type = MenuButtons(self.stdscr, title="Register", width=90, height=30, options=options)
         menu_register_type.show()
 
@@ -47,15 +45,22 @@ class RegisterController(Controller):
         
         return None, None
     
-    def _show_registration_form(self, user_type, email_label):
+    def _show_registration_form(self, user_type : str, email_label : str) -> dict | None:
         
         fields = self._get_fields(user_type, email_label)
         
-        menu_register_input = MenuInput(self.stdscr, title="Register", width=90, height=30, fields=fields, button_label="[ Cadastrar ]")
+        menu_register_input = MenuInput(
+            self.stdscr, 
+            title="Register", 
+            width=90, height=30, 
+            fields=fields, 
+            button_label="[ Cadastrar ]"
+            )
+        
         menu_register_input.show()
-        self.last_form_input = menu_register_input
 
         if menu_register_input.cancelled:
+            self.cancelled = menu_register_input.cancelled
             return None
 
         can_save = Utils.validate_all(
@@ -76,7 +81,7 @@ class RegisterController(Controller):
         
         return menu_register_input.get_result()
 
-    def _get_fields(self, user_type, email_label):
+    def _get_fields(self, user_type : str, email_label : str) -> list:
     
         if user_type == "estudante":
             return [
@@ -87,7 +92,8 @@ class RegisterController(Controller):
                 ("Senha",         True),
                 ("Conf. Senha",   True),
             ]
-        elif user_type == "funcionario":
+        
+        if user_type == "funcionario":
             return [
                 ("Nome completo", False),
                 (email_label,        False),
@@ -96,17 +102,18 @@ class RegisterController(Controller):
                 ("Senha",         True),
                 ("Conf. Senha",   True),
             ]
-        else:
-            return [
-                ("Nome completo", False),
-                (email_label,        False),
-                ("CPF",           False),
-                ("Senha",         True),
-                ("Conf. Senha",   True),
-            ]
         
-    def _get_data_message(self, user_type, email_label, form_data):
+        return [
+            ("Nome completo", False),
+            (email_label,        False),
+            ("CPF",           False),
+            ("Senha",         True),
+            ("Conf. Senha",   True),
+        ]
         
+    def _get_data_message(self, user_type : str, email_label : str, form_data : dict) -> str:
+        
+        # Método da classe DataBase retorna uma string (user_type) de acordo com o tipo de usuário que foi salvo no banco
         if user_type == "estudante":
             return self.data.register_user(
                 user_type=user_type,
@@ -116,7 +123,8 @@ class RegisterController(Controller):
                 password=form_data.get("Senha"),
                 enrollment=form_data.get("Matrícula")
             )
-        elif user_type == "funcionario":
+        
+        if user_type == "funcionario":
             return self.data.register_user(
                 user_type=user_type,
                 name=form_data.get("Nome completo"),
@@ -125,11 +133,11 @@ class RegisterController(Controller):
                 password=form_data.get("Senha"),
                 employee_code=form_data.get("Código do Funcionário")
             )
-        else:
-            return self.data.register_user(
-                user_type=user_type,
-                name=form_data.get("Nome completo"),
-                email=form_data.get(email_label),
-                cpf=form_data.get("CPF"),
-                password=form_data.get("Senha"),
-            )
+        
+        return self.data.register_user(
+            user_type=user_type,
+            name=form_data.get("Nome completo"),
+            email=form_data.get(email_label),
+            cpf=form_data.get("CPF"),
+            password=form_data.get("Senha"),
+        )

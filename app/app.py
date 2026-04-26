@@ -1,12 +1,10 @@
+from app import RegisterController, LoginController, SessionController
 from model import MenuButtons
-from .register_controller import RegisterController
-from .login_controller import LoginController
-from .session_controller import SessionController
 from database import DataBase
+from curses import window
 import curses
 
 class App():
-
     def __init__(self):
         curses.curs_set(0)
         curses.use_default_colors()
@@ -18,7 +16,7 @@ class App():
         self.data = DataBase()
         self.data.initialize_database()
 
-    def run(self, stdscr):
+    def run(self, stdscr : window) -> None:
         while(True):
             main_menu = MenuButtons(stdscr, title="SmartRU", width=60, height=30, options=["[  Login  ]", "[  Register  ]", "[  Exit  ]"])
             main_menu.show()
@@ -30,14 +28,13 @@ class App():
             elif main_menu.selected == 1:
                 self._register(stdscr=stdscr)
             elif main_menu.selected == 2:
-                return
+                break
 
-    def _register(self, stdscr):
-        
+    def _register(self, stdscr : window) -> None:
         register_controller = RegisterController(stdscr, self.data)
         register_controller.run()
 
-    def _login(self, stdscr):
+    def _login(self, stdscr : window) -> None:
         login_controller = LoginController(stdscr, self.data)
         login_controller.run()
 

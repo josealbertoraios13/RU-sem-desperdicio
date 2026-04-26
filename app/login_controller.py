@@ -1,21 +1,32 @@
 from .controller import Controller
 from model import MenuInput
+from curses import window
+from database import DataBase
 
 class LoginController(Controller):
-    def __init__(self, stdscr, data):
+    def __init__(self, stdscr : window, data : DataBase):
         super().__init__(stdscr, data)
+        self.data : DataBase
         self.data_base_message = {"success": False, "message": "Login cancelado"}
 
-    def run(self):
+    def run(self) -> None:
         fields = [
             ("CPF", False),
             ("Senha", True),
         ]
 
-        menu_login = MenuInput(self.stdscr, title="Login", width=90, height=30, fields=fields, button_label="[ Entrar ]", verify=False)
+        menu_login = MenuInput(
+            self.stdscr, 
+            title="Login", 
+            width=90, height=30, 
+            fields=fields, 
+            button_label="[ Entrar ]", 
+            verify=False
+            )
+        
         menu_login.show()
 
-        if menu_login.cancelled:
+        if menu_login.cancelled: # ESC
             return
 
         form_data = menu_login.get_result()

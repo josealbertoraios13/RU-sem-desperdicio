@@ -1,21 +1,22 @@
 from datetime import datetime
 from .controller import Controller
 from database import DataBase
-from model import MenuHistory, MenuModal, MenuWarning
+from model import MenuHistory, MenuModal
+from curses import window
 
 class HistoryController(Controller):
-    def __init__(self, stdscr, data, typed, user_id):
-        self.database = data
+    def __init__(self, stdscr : window, data : DataBase, typed : str, user_id : str):
+        super().__init__(stdscr, data)
+        self.data = data
         self.typed = typed
         self.user_id = user_id
-        super().__init__(stdscr, data)
 
-    def run(self):
+    def run(self) -> None:
         schedules = []
         if self.typed == "funcionario":
-            results = self.database.get_all_meal_history()
+            results = self.data.get_all_meal_history()
         else:
-            results = self.database.get_meal_history(user_id=self.user_id)
+            results = self.data.get_meal_history(user_id=self.user_id)
 
         for result in results:
             scheduler_id, schedule_type, schedule_date, schedule_time  = result
@@ -49,53 +50,34 @@ class HistoryController(Controller):
     def _delete(self, item : dict):
 
         if self._can_delete():
-            data = DataBase()
             date_str = item.get("data")
+
             if not date_str:
                 return
+            
             date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
-            result = data.delete_schedule(
+            result = self.data.delete_schedule(
                 user_id=self.user_id,
+                meal_type=item.get("refeicao"),
                 date=date_obj,
-                meal_type=item.get("refeicao")
             )
 
             if "Sucesso" in result:
-                success_menu = MenuWarning(
-                    self.stdscr,
-                    title="Agendamento Excluído",
-                    width=90,
-                    height=30,
-                    warnings=[
-                        "Agendamento cancelado com sucesso",
-                        "Você será redirecionado para o menu principal."
-                    ]
-                )
-                success_menu.show()
+                self._show_warning(
+                    title="Agendamento Excluído", 
+                    messages=["Agendamento cancelado com sucesso", "Você será redirecionado para o menu principal."]
+                    )
                 return
-            else:
-                error_menu = MenuWarning(
-                    self.stdscr,
-                    title="Erro na Exclusão",
-                    width=90,
-                    height=30,
-                    warnings=[result]
-                )
-                error_menu.show()
 
-    def _can_delete(self):
+            self._show_warning(title="Erro na Exclusão", messages=[result])
+                
 
-        warning_menu = MenuWarning(
-            self.stdscr,
-            title="Importante!",
-            width=90,
-            height=30,
-            warnings=[
-                "ATENÇÃO: Esta ação é irreversível!",
-                "Seu agendamento será cancelado e você não poderá entrar no RU",
-            ]
-        )
-        warning_menu.show()
+    def _can_delete(self) -> bool:
+
+        self._show_warning(
+            title="Importante!", 
+            messages=["ATENÇÃO: Esta ação é irreversível!", "Seu agendamento será cancelado e você não poderá entrar no RU"]
+            )
 
         menu_modal = MenuModal(
             box=self.stdscr,
