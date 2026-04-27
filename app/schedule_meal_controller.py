@@ -1,15 +1,16 @@
 from datetime import datetime
 from .controller import Controller
-from model import MenuScheduling, MenuWarning
-
+from model import MenuScheduling
+from curses import window
+from database import DataBase
 
 class ScheduleMealController(Controller):
-    def __init__(self, stdscr, data, user_id, database):
+    def __init__(self, stdscr : window, data : tuple, user_id : str, database : DataBase):
+        super().__init__(stdscr, data)
         self.user_id = user_id
         self.database = database
-        super().__init__(stdscr, data)
 
-    def run(self):
+    def run(self) -> None:
         menu_scheduling = MenuScheduling(
             box=self.stdscr, title="Agendar", width=70, height=30
         )
@@ -29,56 +30,28 @@ class ScheduleMealController(Controller):
 
             h, w = self.stdscr.getmaxyx()
 
-            result = ""
-
             if lunch and dinner:
                 lunch_result = self.database.schedule_meal(
                     date=date, meal_type="almoco", user_id=self.user_id, time=lunch_time
                 )
                 dinner_result = self.database.schedule_meal(
-                    date=date,
-                    meal_type="jantar",
-                    user_id=self.user_id,
-                    time=dinner_time,
+                    date=date, meal_type="jantar", user_id=self.user_id, time=dinner_time,
                 )
 
-                is_success_menu = MenuWarning(
-                    box=self.stdscr,
-                    title="Agendamento Realizado",
-                    width=90,
-                    height=30,
-                    warnings=[lunch_result, dinner_result],
-                )
+                self._show_warning("Agendamento Realizado", [lunch_result, dinner_result])
 
-                is_success_menu.show()
-            elif lunch:
-                result = self.database.schedule_meal(
+                return
+            
+            if lunch:
+                lunch_result = self.database.schedule_meal(
                     date=date, meal_type="almoco", user_id=self.user_id, time=lunch_time
                 )
 
-                is_success_menu = MenuWarning(
-                    box=self.stdscr,
-                    title="Agendamento Realizado",
-                    width=90,
-                    height=30,
-                    warnings=[result],
+                self._show_warning("Agendamento Realizado", [lunch_result])
+                return
+            
+            if dinner:
+                dinner_result = self.database.schedule_meal(
+                    date=date, meal_type="jantar", user_id=self.user_id, time=dinner_time,
                 )
-
-                is_success_menu.show()
-            elif dinner:
-                result = self.database.schedule_meal(
-                    date=date,
-                    meal_type="jantar",
-                    user_id=self.user_id,
-                    time=dinner_time,
-                )
-
-                is_success_menu = MenuWarning(
-                    box=self.stdscr,
-                    title="Agendamento Realizado",
-                    width=90,
-                    height=30,
-                    warnings=[result],
-                )
-
-                is_success_menu.show()
+                self._show_warning("Agendamento Realizado", [dinner_result])

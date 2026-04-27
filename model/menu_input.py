@@ -1,5 +1,5 @@
 from model.menu import Menu
-from utils.utils import Utils
+from utils import Utils, MenuInputUtils
 import curses
 
 class MenuInput(Menu):
@@ -66,7 +66,7 @@ class MenuInput(Menu):
                 return True
             else:
                 if self.verify:
-                    Utils.validate_field(self.fields, self.values, self.errors, self.selected)
+                    MenuInputUtils.validate_field(self.fields, self.values, self.errors, self.selected)
                 self._next()
         elif key == '\x1b': # ESC
             self.cancelled = True
@@ -124,12 +124,14 @@ class MenuInput(Menu):
             else:
                 self.box.addstr(row + 1, 7, " " * (x - 10))
 
-    def _next(self):
+    # Overrided
+    def _next(self) -> None:
         self.selected += 1
         if self.selected > len(self.fields):   
             self.selected = 0
 
-    def _previous(self):
+    # Overrrided
+    def _previous(self) -> None:
         self.selected -= 1
         if self.selected < 0:
             self.selected = len(self.fields)   

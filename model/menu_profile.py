@@ -7,6 +7,7 @@ class MenuProfile(Menu):
     def __init__(self, box, title, width, height, options, user):
         _, self.occupant, self.role, self.email, self.cpf, self.matricula, self.codigo_funcionario = user
         super().__init__(box, title, width, height, options)
+        self.cancelled = False
 
     def _draw_main_container(self):
         y, x = self.box.getmaxyx()
@@ -65,5 +66,5 @@ class MenuProfile(Menu):
         elif key == curses.KEY_ENTER or key in [10, 13]:
             return True
         elif key == 27: 
-            self.selected = -1
+            self.cancelled = True
             return True

@@ -1,5 +1,5 @@
 from model.menu import Menu
-from utils.utils import Utils
+from utils import Utils, MenuSchuduleUtils
 import curses
 
 # Feriados nacionais fixos (mês, dia)
@@ -19,8 +19,8 @@ ALMOCO_FECHAMENTO = (14,  0)
 JANTAR_ABERTURA   = (18, 30)
 JANTAR_FECHAMENTO = (22,  0)
  
-HORARIO_ALMOCO = f"{Utils.format_time_tuple(*ALMOCO_ABERTURA)} – {Utils.format_time_tuple(*ALMOCO_FECHAMENTO)}"
-HORARIO_JANTAR = f"{Utils.format_time_tuple(*JANTAR_ABERTURA)} – {Utils.format_time_tuple(*JANTAR_FECHAMENTO)}"
+HORARIO_ALMOCO = f"{MenuSchuduleUtils.format_time_tuple(*ALMOCO_ABERTURA)} – {MenuSchuduleUtils.format_time_tuple(*ALMOCO_FECHAMENTO)}"
+HORARIO_JANTAR = f"{MenuSchuduleUtils.format_time_tuple(*JANTAR_ABERTURA)} – {MenuSchuduleUtils.format_time_tuple(*JANTAR_FECHAMENTO)}"
 
 class MenuScheduling(Menu):
 
@@ -88,27 +88,30 @@ class MenuScheduling(Menu):
                 self.checked[self.selected] = not self.checked[self.selected]
                 self.errors["checkboxes"] = ""
                 self._next()
+
                 return False
 
             # Validar e Avançar em Data
             if self.selected == self._DATE_IDX:
                 if self.date_value:
-                    self.errors["date"] = Utils.validate_date(self.date_value)
+                    self.errors["date"] = MenuSchuduleUtils.validate_date(self.date_value)
                 self._next()
                 return False
 
             # Validar e Avançar em Horário de Almoço
             if self.selected == self._LUNCH_TIME_IDX:
                 if self.lunch_time_value:
-                    self.errors["lunch_time"] = Utils.validate_time(self.lunch_time_value, ALMOCO_ABERTURA, ALMOCO_FECHAMENTO)
+                    self.errors["lunch_time"] = MenuSchuduleUtils.validate_time(self.lunch_time_value, ALMOCO_ABERTURA, ALMOCO_FECHAMENTO)
                 self._next()
+
                 return False
 
             # Validar e Avançar em Horário de Jantar
             if self.selected == self._DINNER_TIME_IDX:
                 if self.dinner_time_value:
-                    self.errors["dinner_time"] = Utils.validate_time(self.dinner_time_value, JANTAR_ABERTURA, JANTAR_FECHAMENTO)
+                    self.errors["dinner_time"] = MenuSchuduleUtils.validate_time(self.dinner_time_value, JANTAR_ABERTURA, JANTAR_FECHAMENTO)
                 self._next()
+
                 return False
 
             # Botão confirmar
@@ -118,6 +121,7 @@ class MenuScheduling(Menu):
                     self.box.clear()
                     self.box.refresh()
                     return True
+                
                 return False
 
         elif isinstance(key, str) and key == '\x1b':  # ESC
@@ -144,21 +148,21 @@ class MenuScheduling(Menu):
                 raw = self.date_value.replace("/", "")
                 if len(raw) < 8:
                     raw += key
-                    self.date_value = Utils.format_date_input(raw)
+                    self.date_value = MenuSchuduleUtils.format_date_input(raw)
                     self.errors["date"] = ""
 
             elif self.selected == self._LUNCH_TIME_IDX:
                 raw = self.lunch_time_value.replace(":", "")
                 if len(raw) < 4:
                     raw += key
-                    self.lunch_time_value = Utils.format_time_input(raw)
+                    self.lunch_time_value = MenuSchuduleUtils.format_time_input(raw)
                     self.errors["lunch_time"] = ""
 
             elif self.selected == self._DINNER_TIME_IDX:
                 raw = self.dinner_time_value.replace(":", "")
                 if len(raw) < 4:
                     raw += key
-                    self.dinner_time_value = Utils.format_time_input(raw)
+                    self.dinner_time_value = MenuSchuduleUtils.format_time_input(raw)
                     self.errors["dinner_time"] = ""
 
         return False
@@ -171,25 +175,25 @@ class MenuScheduling(Menu):
         row = title_lines
 
         # ---- Checkboxes ----
-        Utils.draw_section_label(box=self.box, row=row, text="Refeição (selecione ao menos uma):")
+        MenuSchuduleUtils.draw_section_label(box=self.box, row=row, text="Refeição (selecione ao menos uma):")
         row += 1
         for i, label in enumerate(self.checkboxes):
             mark   = "X" if self.checked[i] else " "
             text   = f"  [{mark}] {label}"
             is_sel = (self.selected == i)
-            Utils.draw_selectable(box=self.box,row=row, col=5, text=text, is_selected=is_sel, color_pair=curses.color_pair(2))
+            MenuSchuduleUtils.draw_selectable(box=self.box,row=row, col=5, text=text, is_selected=is_sel, color_pair=curses.color_pair(2))
             row += 1
 
         if self.errors["checkboxes"]:
-            Utils.draw_error(box=self.box,row=row, msg=self.errors["checkboxes"], x_max=x)
+            MenuSchuduleUtils.draw_error(box=self.box,row=row, msg=self.errors["checkboxes"], x_max=x)
         else:
-            Utils.clear_line(box=self.box, row=row, x_max=x)
+            MenuSchuduleUtils.clear_line(box=self.box, row=row, x_max=x)
         row += 1
 
         # ---- Campo Data ----
-        Utils.draw_section_label(box=self.box, row=row, text="Data do agendamento (DD/MM/AAAA):")
+        MenuSchuduleUtils.draw_section_label(box=self.box, row=row, text="Data do agendamento (DD/MM/AAAA):")
         row += 1
-        Utils.draw_text_field(
+        MenuSchuduleUtils.draw_text_field(
             box=self.box,
             row=row, label="Data", value=self.date_value,
             is_selected=(self.selected == self._DATE_IDX),
@@ -197,24 +201,24 @@ class MenuScheduling(Menu):
         )
         row += 1
         if self.errors["date"]:
-            Utils.draw_error(box=self.box, row=row, msg=self.errors["date"],x_max=x)
+            MenuSchuduleUtils.draw_error(box=self.box, row=row, msg=self.errors["date"],x_max=x)
         else:
-            Utils.clear_line(box=self.box, row=row, x_max=x)
+            MenuSchuduleUtils.clear_line(box=self.box, row=row, x_max=x)
         row += 1
 
         # ---- Aviso de horários ----
         info = self._build_schedule_info()
-        Utils.draw_info(box=self.box,row=row, msg=info, x_max=x)
+        MenuSchuduleUtils.draw_info(box=self.box,row=row, msg=info, x_max=x)
         row += 1
 
         # ---- Campos de Horário Dinâmicos ----
         if any(self.checked):
-            Utils.draw_section_label(box=self.box, row=row, text="Horário estimado de chegada (HH:MM) – opcional:")
+            MenuSchuduleUtils.draw_section_label(box=self.box, row=row, text="Horário estimado de chegada (HH:MM) – opcional:")
             row += 1
             
             # Campo de Almoço
             if self.checked[0]:
-                Utils.draw_text_field(
+                MenuSchuduleUtils.draw_text_field(
                     box=self.box,
                     row=row, label="Almoço", value=self.lunch_time_value,
                     is_selected=(self.selected == self._LUNCH_TIME_IDX),
@@ -222,14 +226,14 @@ class MenuScheduling(Menu):
                 )
                 row += 1
                 if self.errors["lunch_time"]:
-                    Utils.draw_error(box=self.box, row=row, msg=self.errors["lunch_time"], x_max=x)
+                    MenuSchuduleUtils.draw_error(box=self.box, row=row, msg=self.errors["lunch_time"], x_max=x)
                 else:
-                    Utils.clear_line(box=self.box, row=row, x_max=x)
+                    MenuSchuduleUtils.clear_line(box=self.box, row=row, x_max=x)
                 row += 1
                 
             # Campo de Jantar
             if self.checked[1]:
-                Utils.draw_text_field(
+                MenuSchuduleUtils.draw_text_field(
                     box=self.box,
                     row=row, label="Jantar", value=self.dinner_time_value,
                     is_selected=(self.selected == self._DINNER_TIME_IDX),
@@ -237,9 +241,9 @@ class MenuScheduling(Menu):
                 )
                 row += 1
                 if self.errors["dinner_time"]:
-                    Utils.draw_error(box=self.box, row=row, msg=self.errors["dinner_time"], x_max=x)
+                    MenuSchuduleUtils.draw_error(box=self.box, row=row, msg=self.errors["dinner_time"], x_max=x)
                 else:
-                    Utils.clear_line(box=self.box, row=row, x_max=x)
+                    MenuSchuduleUtils.clear_line(box=self.box, row=row, x_max=x)
                 row += 1
                 
         row += 1 # Espaçamento antes do botão
@@ -276,7 +280,7 @@ class MenuScheduling(Menu):
             ok = False
 
         # Validação Data
-        date_err = Utils.validate_date(self.date_value) if self.date_value else "Informe a data"
+        date_err = MenuSchuduleUtils.validate_date(self.date_value) if self.date_value else "Informe a data"
         self.errors["date"] = date_err
         if date_err:
             if ok:
@@ -285,7 +289,7 @@ class MenuScheduling(Menu):
 
         # Validação Horário Almoço
         if self.checked[0] and self.lunch_time_value:
-            lunch_err = Utils.validate_time(self.lunch_time_value, ALMOCO_ABERTURA, ALMOCO_FECHAMENTO)
+            lunch_err = MenuSchuduleUtils.validate_time(self.lunch_time_value, ALMOCO_ABERTURA, ALMOCO_FECHAMENTO)
             self.errors["lunch_time"] = lunch_err
             if lunch_err:
                 if ok:
@@ -296,7 +300,7 @@ class MenuScheduling(Menu):
 
         # Validação Horário Jantar
         if self.checked[1] and self.dinner_time_value:
-            dinner_err = Utils.validate_time(self.dinner_time_value, JANTAR_ABERTURA, JANTAR_FECHAMENTO)
+            dinner_err = MenuSchuduleUtils.validate_time(self.dinner_time_value, JANTAR_ABERTURA, JANTAR_FECHAMENTO)
             self.errors["dinner_time"] = dinner_err
             if dinner_err:
                 if ok:

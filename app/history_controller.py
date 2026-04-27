@@ -12,14 +12,15 @@ class HistoryController(Controller):
         self.user_id = user_id
 
     def run(self) -> None:
-        schedules = []
+        # Lista de dicionários inicialmente vazia
+        schedules : list = []
         if self.typed == "funcionario":
-            results = self.data.get_all_meal_history()
+            schedules_tuples = self.data.get_all_meal_history()
         else:
-            results = self.data.get_meal_history(user_id=self.user_id)
+            schedules_tuples = self.data.get_meal_history(user_id=self.user_id)
 
-        for result in results:
-            scheduler_id, schedule_type, schedule_date, schedule_time  = result
+        for schedule_tuple in schedules_tuples:
+            scheduler_id, schedule_type, schedule_date, schedule_time = schedule_tuple
 
             # Converte o horário para string no formato HH:MM se for um objeto time
             horario_str = schedule_time.strftime("%H:%M") if schedule_time else None

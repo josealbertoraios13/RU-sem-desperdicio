@@ -36,9 +36,10 @@ class SessionController(Controller):
 
             menu_profile.show()     
 
-            if menu_profile.selected == -1: # ESC
+            if menu_profile.cancelled: # ESC
                 break
-            elif menu_profile.selected == 0:
+            
+            if menu_profile.selected == 0:
                 self._schedule_meal_controller()
             elif menu_profile.selected == 1:
                 self._view_meal_history()

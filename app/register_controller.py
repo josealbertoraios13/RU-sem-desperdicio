@@ -1,6 +1,6 @@
 from .controller import Controller
 from model import MenuButtons, MenuInput
-from utils import Utils
+from utils import Utils, ControllerUtils
 from curses import window
 from database import DataBase
 
@@ -47,7 +47,7 @@ class RegisterController(Controller):
     
     def _show_registration_form(self, user_type : str, email_label : str) -> dict | None:
         
-        fields = self._get_fields(user_type, email_label)
+        fields = ControllerUtils._get_fields(user_type, email_label)
         
         menu_register_input = MenuInput(
             self.stdscr, 
@@ -81,59 +81,21 @@ class RegisterController(Controller):
         
         return menu_register_input.get_result()
 
-    def _get_fields(self, user_type : str, email_label : str) -> list:
-    
-        if user_type == "estudante":
-            return [
-                ("Nome completo", False),
-                (email_label,        False),
-                ("CPF",           False),
-                ("Matrícula", False),
-                ("Senha",         True),
-                ("Conf. Senha",   True),
-            ]
-        
-        if user_type == "funcionario":
-            return [
-                ("Nome completo", False),
-                (email_label,        False),
-                ("CPF",           False),
-                ("Código do Funcionário", False),
-                ("Senha",         True),
-                ("Conf. Senha",   True),
-            ]
-        
-        return [
-            ("Nome completo", False),
-            (email_label,        False),
-            ("CPF",           False),
-            ("Senha",         True),
-            ("Conf. Senha",   True),
-        ]
-        
     def _get_data_message(self, user_type : str, email_label : str, form_data : dict) -> str:
         
+        enrollment_label = "Matrícula" if user_type == "estudante" else "Código do Funcionário"
+
         # Método da classe DataBase retorna uma string (user_type) de acordo com o tipo de usuário que foi salvo no banco
-        if user_type == "estudante":
+        if user_type != "convidado":
             return self.data.register_user(
                 user_type=user_type,
                 name=form_data.get("Nome completo"),
                 email=form_data.get(email_label),
                 cpf=form_data.get("CPF"),
                 password=form_data.get("Senha"),
-                enrollment=form_data.get("Matrícula")
+                enrollment=form_data.get(enrollment_label)
             )
-        
-        if user_type == "funcionario":
-            return self.data.register_user(
-                user_type=user_type,
-                name=form_data.get("Nome completo"),
-                email=form_data.get(email_label),
-                cpf=form_data.get("CPF"),
-                password=form_data.get("Senha"),
-                employee_code=form_data.get("Código do Funcionário")
-            )
-        
+
         return self.data.register_user(
             user_type=user_type,
             name=form_data.get("Nome completo"),

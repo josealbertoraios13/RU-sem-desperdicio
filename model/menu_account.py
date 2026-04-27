@@ -4,13 +4,14 @@ import curses
 
 class MenuAccount(Menu):
     def __init__(self, box, title, width, height, options, role, occupant, email, cpf, extra_label=None, extra_value=None):
-        self.role        = role
-        self.occupant    = occupant
-        self.email       = email
-        self.cpf         = cpf
+        super().__init__(box, title, width, height, options)
+        self.role = role
+        self.occupant = occupant
+        self.email = email
+        self.cpf = cpf
         self.extra_label = extra_label
         self.extra_value = extra_value
-        super().__init__(box, title, width, height, options)
+        self.cancelled = False
 
     def _build_rows(self):
         rows = [
@@ -97,7 +98,7 @@ class MenuAccount(Menu):
             self.box.refresh()
             return True
         elif key == 27:
-            self.selected = -1
+            self.cancelled = True
             self.box.clear()
             self.box.refresh()
             return True

@@ -30,9 +30,10 @@ class AccountController(Controller):
 
         menu_account.show()
 
-        if menu_account.selected == 0:
+        if menu_account.cancelled or menu_account.selected == 0:
             return
-        elif menu_account.selected == 1:
+        
+        if menu_account.selected == 1:
             self._delete()
 
     def _delete(self) -> None:
@@ -64,7 +65,6 @@ class AccountController(Controller):
             error_menu.show()
 
     def _can_delete(self) -> bool:
-
         self._show_warning(
             title="Importante!", 
             messages=["ATENÇÃO: Esta ação é irreversível!", "Todos os seus dados serão permanentemente excluídos.",]

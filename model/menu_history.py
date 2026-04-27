@@ -1,18 +1,17 @@
-from model.menu import Menu
-from utils.utils import Utils
+from model import Menu
+from utils import Utils, MenuHistoryUtils
+
 import curses
 import datetime
 
 
 class MenuHistory(Menu):
-    def __init__(
-        self, box: curses.window, title: str, width: int, height: int, schedules: list
-    ):
+    def __init__(self, box: curses.window, title: str, width: int, height: int, schedules: list):
         self.cancelled = False
         self.enter = False
         self.selected_schedule = None
 
-        self._sorted_items = Utils.sort_schedules(schedules)
+        self._sorted_items = MenuHistoryUtils.sort_schedules(schedules)
 
         self._scroll_offset = 0
 
@@ -47,12 +46,10 @@ class MenuHistory(Menu):
             self._previous()
             self._adjust_scroll()
             return False
-
         elif key == curses.KEY_DOWN:
             self._next()
             self._adjust_scroll()
             return False
-
         elif key in (curses.KEY_ENTER, 10, 13):
             if self._sorted_items:
                 self.selected_schedule = self._sorted_items[self.selected]
@@ -60,7 +57,6 @@ class MenuHistory(Menu):
             self.box.refresh()
             self.enter = True
             return True
-
         elif isinstance(key, str) and key == "\x1b":  # ESC
             self.cancelled = True
             self.box.clear()
@@ -121,8 +117,8 @@ class MenuHistory(Menu):
 
         for list_pos in range(self._scroll_offset, end_idx):
             item = self._sorted_items[list_pos]
-            expired = Utils.is_expired(item, now)
-            label = Utils.format_label(item, expired, x)
+            expired = MenuHistoryUtils.is_expired(item, now)
+            label = MenuHistoryUtils.format_label(item, expired, x)
 
             is_sel = list_pos == self.selected
 
