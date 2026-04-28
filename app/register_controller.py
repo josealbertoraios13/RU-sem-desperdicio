@@ -1,6 +1,6 @@
 from .controller import Controller
 from model import MenuButtons, MenuInput
-from utils import Utils, ControllerUtils
+from utils import MenuInputUtils, ControllerUtils
 from curses import window
 from database import DataBase
 
@@ -63,11 +63,10 @@ class RegisterController(Controller):
             self.cancelled = menu_register_input.cancelled
             return None
 
-        can_save = Utils.validate_all(
+        can_save = MenuInputUtils.validate_all(
             fields=menu_register_input.fields,
             values=menu_register_input.values, 
             errors=menu_register_input.errors, 
-            idx=menu_register_input.selected, 
             box=menu_register_input.box
             )
         
