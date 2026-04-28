@@ -75,7 +75,7 @@ class DataBase:
             enrollment : str | None = None, employee_code : str | None = None
             ) -> str: 
         
-        if enrollment is str and employee_code is str:
+        if isinstance(enrollment, str) and isinstance(employee_code, str):
             error_msg = self._check_user_exists(cpf, email, enrollment , employee_code)
             
             if error_msg:
