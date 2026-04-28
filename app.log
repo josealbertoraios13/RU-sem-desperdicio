@@ -133,3 +133,14 @@
 2026-04-28 17:07:38,230 - database.database - INFO - Conexão PostgreSQL inicializada com sucesso!
 2026-04-28 17:07:43,605 - database.database - INFO - Database connection pool closed
 2026-04-28 17:07:45,339 - database.database - INFO - Database connection pool closed
+2026-04-28 17:15:27,996 - database.database - INFO - Conexão PostgreSQL inicializada com sucesso!
+2026-04-28 17:15:27,999 - database.database - INFO - Database schema initialized successfully
+2026-04-28 17:15:40,750 - database.database - INFO - Conexão PostgreSQL inicializada com sucesso!
+2026-04-28 17:15:46,212 - database.database - INFO - Database connection pool closed
+2026-04-28 17:15:53,899 - database.database - INFO - Conexão PostgreSQL inicializada com sucesso!
+2026-04-28 17:16:01,007 - database.database - INFO - Database connection pool closed
+2026-04-28 17:16:09,599 - database.database - INFO - Conexão PostgreSQL inicializada com sucesso!
+2026-04-28 17:16:38,924 - database.database - INFO - Database connection pool closed
+2026-04-28 17:16:47,300 - database.database - INFO - Conexão PostgreSQL inicializada com sucesso!
+2026-04-28 17:16:55,172 - database.database - INFO - Database connection pool closed
+2026-04-28 17:16:55,667 - database.database - INFO - Database connection pool closed
