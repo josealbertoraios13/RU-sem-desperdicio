@@ -19,11 +19,11 @@ class ScheduleMealController(Controller):
 
         if menu_scheduling.selected == menu_scheduling._BTN_IDX:
             menu_result = menu_scheduling.result
-            lunch = menu_result.get("almoco")
-            dinner = menu_result.get("jantar")
-            date = menu_result.get("data")
-            lunch_time = menu_result.get("horario_almoco")
-            dinner_time = menu_result.get("horario_jantar")
+            lunch = (str)(menu_result.get("almoco"))
+            dinner = (str)(menu_result.get("jantar"))
+            date = (str)(menu_result.get("data"))
+            lunch_time = (str)(menu_result.get("horario_almoco"))
+            dinner_time = (str)(menu_result.get("horario_jantar"))
 
             if date:
                 date = datetime.strptime(date, "%d/%m/%Y").date()

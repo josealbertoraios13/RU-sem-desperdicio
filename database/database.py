@@ -4,7 +4,6 @@ import logging
 import os
 import bcrypt
 import psycopg2
-import datetime
 
 # Carrega as váriaveis de ambiente
 load_dotenv()
@@ -155,7 +154,7 @@ class DataBase:
                 "data": None
             }
 
-    def schedule_meal(self, user_id : str, meal_type : str, date : str, time : str) -> str:
+    def schedule_meal(self, user_id : str, meal_type : str, date, time : str) -> str:
         try:
             conn = self.connect()
             try:
@@ -271,7 +270,7 @@ class DataBase:
         finally:
             self.connection_pool.putconn(conn)
 
-    def delete_schedule(self, user_id : str, meal_type : str, date : datetime._Date) -> str:
+    def delete_schedule(self, user_id : str, meal_type : str, date) -> str:
         # Deleta um agendamento 
         try:
             conn = self.connect()
