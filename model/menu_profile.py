@@ -1,15 +1,16 @@
 from model import Menu
 from utils import Utils
+from curses import window
 import curses
 
 class MenuProfile(Menu):
 
-    def __init__(self, box, title, width, height, options, user):
+    def __init__(self, box : window, title : str, width : int, height : int, options : list, user : tuple):
         _, self.occupant, self.role, self.email, self.cpf, self.matricula, self.codigo_funcionario = user
         super().__init__(box, title, width, height, options)
         self.cancelled = False
 
-    def _draw_main_container(self):
+    def _draw_main_container(self) -> None:
         y, x = self.box.getmaxyx()
 
         title_lines = len(self.title.splitlines())
@@ -18,7 +19,7 @@ class MenuProfile(Menu):
         margin_left = 8
 
         self.box.attron(curses.color_pair(1) | curses.A_BOLD)
-        self.box.addstr(subtitle_start, margin_left, str.upper(self.role)[:x - 4])
+        self.box.addstr(subtitle_start, margin_left, str.upper(self.role))
         self.box.attroff(curses.color_pair(1) | curses.A_BOLD)
 
         self.box.attron(curses.color_pair(2))
@@ -30,14 +31,14 @@ class MenuProfile(Menu):
             btn_mid = Utils.get_mid(option, self.box)
             if i == self.selected:
                 self.box.attron(curses.color_pair(2) | curses.A_REVERSE)
-                self.box.addstr(btn_start + i * 2, btn_mid, option[:x - 4])
+                self.box.addstr(btn_start + i * 2, btn_mid, option)
                 self.box.attroff(curses.color_pair(2) | curses.A_REVERSE)
             else:
                 self.box.attron(curses.color_pair(1))
-                self.box.addstr(btn_start + i * 2, btn_mid, option[:x - 4])
+                self.box.addstr(btn_start + i * 2, btn_mid, option)
                 self.box.attroff(curses.color_pair(1))
 
-    def show(self):
+    def show(self) -> None:
         while True:
             self.box.clear()
             self.box.attron(curses.color_pair(1))
@@ -54,7 +55,7 @@ class MenuProfile(Menu):
 
             return
 
-    def _poll_events(self):
+    def _poll_events(self) -> bool:
         key = self.box.getch()
 
         if key == curses.KEY_UP:
@@ -68,3 +69,5 @@ class MenuProfile(Menu):
         elif key == 27: 
             self.cancelled = True
             return True
+        
+        return False

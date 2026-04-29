@@ -88,17 +88,17 @@ class RegisterController(Controller):
         if user_type != "convidado":
             return self.data.register_user(
                 user_type=user_type,
-                name=form_data.get("Nome completo"),
-                email=form_data.get(email_label),
-                cpf=form_data.get("CPF"),
-                password=form_data.get("Senha"),
+                name=(str)(form_data.get("Nome completo")),
+                email=(str)(form_data.get(email_label)),
+                cpf=(str)(form_data.get("CPF")).replace(".", "").replace("-", ""),
+                password=(str)(form_data.get("Senha")),
                 enrollment=form_data.get(enrollment_label)
             )
 
         return self.data.register_user(
             user_type=user_type,
-            name=form_data.get("Nome completo"),
-            email=form_data.get(email_label),
-            cpf=form_data.get("CPF"),
-            password=form_data.get("Senha"),
+            name=(str)(form_data.get("Nome completo")),
+            email=(str)(form_data.get(email_label)),
+            cpf=(str)(form_data.get("CPF")),
+            password=(str)(form_data.get("Senha")),
         )

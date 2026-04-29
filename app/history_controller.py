@@ -48,7 +48,7 @@ class HistoryController(Controller):
             if schedule_to_delete:
                 self._delete(item=schedule_to_delete)
 
-    def _delete(self, item : dict):
+    def _delete(self, item : dict) -> None:
 
         if self._can_delete():
             date_str = item.get("data")
@@ -59,7 +59,7 @@ class HistoryController(Controller):
             date_obj = datetime.strptime(date_str, "%d/%m/%Y").date()
             result = self.data.delete_schedule(
                 user_id=self.user_id,
-                meal_type=item.get("refeicao"),
+                meal_type=(str)(item.get("refeicao")),
                 date=date_obj,
             )
 
@@ -89,7 +89,7 @@ class HistoryController(Controller):
         )
         menu_modal.show()
 
-        if menu_modal.selected == 0:
+        if menu_modal.selected == 0 or menu_modal.cancelled:
             return False
         
         return True

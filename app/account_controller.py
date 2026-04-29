@@ -39,6 +39,7 @@ class AccountController(Controller):
     def _delete(self) -> None:
         if self._can_delete():
             db = DataBase()
+            self.cpf = (str)(self.cpf).replace(".", "").replace("-", "")
             result = db.delete_user(cpf=self.cpf)
 
             if "Sucesso" in result:

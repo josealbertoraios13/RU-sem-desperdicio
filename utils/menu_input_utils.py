@@ -5,6 +5,17 @@ import curses
 
 class MenuInputUtils:
     @staticmethod
+    def format_cpf_input(cpf : str) -> str:
+        if len(cpf) <= 4:
+            return f"{cpf[:3]}.{cpf[3:]}"
+        
+        if len(cpf) <= 7:
+            return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:]}"
+        
+
+        return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
+    
+    @staticmethod
     def validate_field(fields : list, values : list, errors : list, idx : int, *args) -> bool:
         label, _ = fields[idx]
         val = values[idx].strip()

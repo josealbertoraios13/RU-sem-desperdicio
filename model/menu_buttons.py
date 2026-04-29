@@ -14,7 +14,7 @@ class MenuButtons(Menu):
 
             return
 
-    def _poll_events(self):
+    def _poll_events(self) -> bool:
         key = self.box.getch()
             
         if key == curses.KEY_UP:
@@ -30,6 +30,8 @@ class MenuButtons(Menu):
             self.box.refresh()
             self.selected = -1
             return True
+        
+        return False
                 
     def _draw_main_container(self) -> None:
         spacing = 2

@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 from pyfiglet import figlet_format
 from utils import Utils
+from curses import window
 import curses
 
 class Menu(ABC):
 
-    # Constructor - Initialize the object with this parameters
-    def __init__(self, box : curses.window, title, width, height, options):
+    def __init__(self, box : window, title : str, width : int, height : int, options : list) -> None:
         self.box = box
         self.title = figlet_format(title)
         self.width = width
@@ -15,7 +15,7 @@ class Menu(ABC):
         self.selected = 0
         self.initialize()
 
-    def initialize(self):
+    def initialize(self) -> None:
         self.box = curses.newwin(self.height, self.width, 1, 5)
         self.box.keypad(True)
         self.box.attron(curses.color_pair(1))
@@ -24,7 +24,7 @@ class Menu(ABC):
         self.box.attroff(curses.color_pair(1))
         self.box.refresh()
 
-    def _draw_title(self):
+    def _draw_title(self) -> None:
         y, x = self.box.getmaxyx()
         lines = self.title.splitlines()
         for i, line in enumerate(lines):
@@ -33,7 +33,7 @@ class Menu(ABC):
             self.box.addstr(1 + i, mid, line[:58])
             self.box.attroff(curses.color_pair(1))
 
-    def _draw_hint(self):
+    def _draw_hint(self) -> None:
         y, x = self.box.getmaxyx()
         hint = "Setas: navegar   Enter: confirmar   Esc: sair"
         mid = Utils.get_mid(hint, self.box)
@@ -47,14 +47,14 @@ class Menu(ABC):
 
     @abstractmethod
     def show(self) -> None:
-        pass
+        pass 
 
-    def _next(self):
+    def _next(self) -> None:
         self.selected += 1
         if self.selected >= len(self.options):
             self.selected = 0
 
-    def _previous(self):
+    def _previous(self) -> None:
         self.selected -= 1
         if self.selected < 0:
             self.selected = len(self.options) - 1

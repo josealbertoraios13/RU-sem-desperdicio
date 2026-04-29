@@ -1,9 +1,10 @@
-import psycopg2
 from psycopg2 import pool
-import bcrypt
-import os
 from dotenv import load_dotenv
 import logging
+import os
+import bcrypt
+import psycopg2
+import datetime
 
 # Carrega as váriaveis de ambiente
 load_dotenv()
@@ -270,7 +271,7 @@ class DataBase:
         finally:
             self.connection_pool.putconn(conn)
 
-    def delete_schedule(self, user_id : str, meal_type : str, date : str) -> str:
+    def delete_schedule(self, user_id : str, meal_type : str, date : datetime._Date) -> str:
         # Deleta um agendamento 
         try:
             conn = self.connect()

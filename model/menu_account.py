@@ -1,19 +1,28 @@
 from model import Menu
-from utils import Utils
+from utils import Utils, MenuInputUtils
+from curses import window
 import curses
 
 class MenuAccount(Menu):
-    def __init__(self, box, title, width, height, options, role, occupant, email, cpf, extra_label=None, extra_value=None):
+    def __init__(self, 
+                box : window,
+                title : str,
+                width : int, height : int, 
+                options : list, 
+                role : str, occupant : str,
+                email : str, cpf : str, 
+                extra_label : str | None = None, extra_value : str | None = None
+            ):
         super().__init__(box, title, width, height, options)
         self.role = role
         self.occupant = occupant
         self.email = email
-        self.cpf = cpf
+        self.cpf = MenuInputUtils.format_cpf_input(cpf=cpf)
         self.extra_label = extra_label
         self.extra_value = extra_value
         self.cancelled = False
 
-    def _build_rows(self):
+    def _build_rows(self) -> list:
         rows = [
             ("Usuario",  self.occupant),
             ("E-mail",   self.email),
@@ -21,12 +30,13 @@ class MenuAccount(Menu):
         ]
         if self.extra_label and self.extra_value:
             rows.append((self.extra_label, self.extra_value))
+
         return rows
 
-    def _draw_main_container(self):
+    def _draw_main_container(self) -> None:
         y, x = self.box.getmaxyx()
         title_lines = len(self.title.splitlines())
-        current_y   = 1 + title_lines + 1
+        current_y = 1 + title_lines + 1
 
         role_mid = Utils.get_mid(self.role, self.box)
         self.box.attron(curses.color_pair(1) | curses.A_BOLD)
@@ -67,7 +77,7 @@ class MenuAccount(Menu):
                 self.box.attroff(curses.color_pair(1))
             current_y += 2
 
-    def show(self):
+    def show(self) -> None:
         while True:
             self.box.clear()
             self.box.attron(curses.color_pair(1))
@@ -84,7 +94,7 @@ class MenuAccount(Menu):
 
             return
 
-    def _poll_event(self):
+    def _poll_event(self) -> bool:
         key = self.box.getch()
 
         if key == curses.KEY_DOWN:
@@ -102,3 +112,5 @@ class MenuAccount(Menu):
             self.box.clear()
             self.box.refresh()
             return True
+        
+        return False

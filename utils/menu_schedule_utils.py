@@ -98,14 +98,15 @@ class MenuSchuduleUtils:
             box.attron(curses.color_pair(color_pair) | curses.A_REVERSE)
             box.addstr(row, col, text)
             box.attroff(curses.color_pair(color_pair) | curses.A_REVERSE)
-        else:
-            box.addstr(row, col, text)
+            return
+            
+        box.addstr(row, col, text)
 
     @staticmethod
     def draw_text_field(box: window, row: int, label: str, value: str, is_selected: bool, x_max: int) -> None:
-        field_w  = x_max - 25
-        display  = value[-(field_w - 2):] if len(value) >= field_w - 1 else value
-        content  = f" {display:<{field_w - 2}} "
+        field_w = x_max - 25
+        display = value[-(field_w - 2):] if len(value) >= field_w - 1 else value
+        content = f" {display:<{field_w - 2}} "
 
         box.attron(curses.color_pair(2))
         box.addstr(row, 5, f"{label}:")

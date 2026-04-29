@@ -38,8 +38,8 @@ class LoginController(Controller):
             ])
             return
 
-        cpf = form_data.get("CPF")
-        password = form_data.get("Senha")
+        cpf = (str)(form_data.get("CPF")).replace(".", "").replace("-", "")
+        password = (str)(form_data.get("Senha"))
 
         self.data_base_message = self.data.login(cpf=cpf, password=password)
         

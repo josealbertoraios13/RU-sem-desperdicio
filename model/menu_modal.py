@@ -1,11 +1,13 @@
 from model import Menu
-import curses
 from utils import Utils
+from curses import window
+import curses
 
 class MenuModal(Menu):
-    def __init__(self, box: curses.window, title, width, height, options, message):
+    def __init__(self, box: window, title : str, width : int, height : int, options : list, message : str):
         super().__init__(box, title, width, height, options)
         self.message = message
+        self.cancelled = False
 
     def show(self) -> None:
         while True:
@@ -18,22 +20,28 @@ class MenuModal(Menu):
 
             return
 
-    def _poll_events(self):
+    def _poll_events(self) -> bool:
         key = self.box.getch()
             
         if key == curses.KEY_UP:
             self._previous()
             return False
+        
         elif key == curses.KEY_DOWN:
             self._next()
             return False
+        
         elif key == curses.KEY_ENTER or key in [10, 13]:
             return True
+        
         elif key == 27: # Tecla ESC
             self.box.clear()
             self.box.refresh()
-            self.selected = -1
+            self.cancelled = True
+
             return True
+        
+        return False
 
     def _draw_main_container(self) -> None:
         spacing = 2
