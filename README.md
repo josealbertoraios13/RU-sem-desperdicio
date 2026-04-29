@@ -11,13 +11,12 @@
     <li>Facilita a organização dos estudantes e convidados</li>
 </ol>
 
-## Funcionalidades principais
+## Funcionalidades principais (release 1.0)
 <ol>
-    <li>Cadastro e Login</li>
+    <li>Cadastro e Login </li>
     <li>Agendamento de Almoço e Jantar</li>
     <li>Cancelamento e Reagendamento</li>
-    <li>Validação de código da ficha</li>
-    <li>Dashboard da direção do RU</li>
+    <li>Contativo de agendamentos no dia</li>li
 </ol>
 
 Projeto interdisciplinar - Sistemas de Informação | Desenvolvido por Tomás Kavela e José Alberto
