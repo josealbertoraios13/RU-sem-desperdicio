@@ -10,12 +10,21 @@
 2. Ajuda no planejamento de refeições
 3. Facilita a organização dos estudantes e convidados
 
-## Funcionalidades principais (release 1.0)
+## Funcionalidades (release 1.0)
 
 1. Cadastro e Login
 2. Agendamento de Almoço e Jantar
-3. Cancelamento e Reagendamento
+3. Cancelamento do agendamento
 4. Contador de agendamentos no dia
+
+## Funcionalidades (release 2.0) - Em desenvolvimento
+1. Reagendamento
+2. Limite de datas por semestres
+3. Código da ficha
+4. Válidar o código da ficha
+5. Notificações para o usuário
+
+## Funcionalidades (release 3.0) - A definir...
 
 ## Fluxogramas e planilhas
 
@@ -58,7 +67,7 @@ pip install -r requirements.txt
 #### Core
 - `bcrypt==4.1.2`
 - `pyfiglet==1.0.4`
-- `windows-curses==2.3.3` *(necessário apenas no Windows)*
+- `windows-curses==2.3.3` *(necessário apenas no Windows) - (recomendamos utilizar o wsl)*
 
 #### PostgreSQL
 - `psycopg2-binary==2.9.9`
