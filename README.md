@@ -1,85 +1,82 @@
 # Smart RU
-## RU <span style="color: green;">Sem</span> Disperdício
+## RU Sem Desperdício
 ### Sistema inteligente para reduzir desperdício de alimentos
 
-<span style="font-weight: bolder;">Aplicação:</span> Sistemas de Informação aplicados à gestão do <span style="font-weight: bolder;">Restaurante Universitário da UFRPE </span>com foco em sustentabilidade
+**Aplicação:** Sistemas de Informação aplicados à gestão do **Restaurante Universitário da UFRPE** com foco em sustentabilidade
 
-## Contribuição:
-<ol>
-    <li>Reduz desperdício de comida</li>
-    <li>Ajuda no planejamento de refeições</li>
-    <li>Facilita a organização dos estudantes e convidados</li>
-</ol>
+## Contribuição
+
+1. Reduz desperdício de comida
+2. Ajuda no planejamento de refeições
+3. Facilita a organização dos estudantes e convidados
 
 ## Funcionalidades principais (release 1.0)
-<ol>
-    <li>Cadastro e Login </li>
-    <li>Agendamento de Almoço e Jantar</li>
-    <li>Cancelamento e Reagendamento</li>
-    <li>Contativo de agendamentos no dia</li>li
-</ol>
+
+1. Cadastro e Login
+2. Agendamento de Almoço e Jantar
+3. Cancelamento e Reagendamento
+4. Contador de agendamentos no dia
 
 ## Fluxogramas e planilhas
+
 Google Drive: https://drive.google.com/drive/folders/1yzRTTHdrZdwsJG4UniKjn_NXUgUbZ6Vx?usp=drive_link
 
 Projeto interdisciplinar - Sistemas de Informação | Desenvolvido por Tomás Kavela e José Alberto
 
-## Instalação:
-Antes de qualquer instalação, você precisa saber o que já deve ter instalado (Python 3.11+, Git, Docker).
+---
 
-Clone o repositório com o seguinte comando:
+## Instalação
+
+Antes de qualquer instalação, certifique-se de ter instalado: **Python 3.11+**, **Git** e **Docker**.
+
+Clone o repositório:
+
 ```bash
 git clone https://github.com/josealbertoraios13/RU-sem-desperdicio.git
 ```
 
-### Antes de tudo crie um Ambiente Virtual
-**Linux/MacOs**
+### Criando o Ambiente Virtual
+
+**Linux/macOS**
 ```bash
-python3 -m venv venv # Cria o ambiente
-
-source venv/bin/activate # Ativa o ambiente
-
-pip install --upgrade pip # Atualiza o pip
-pip install -r requirements.txt # Instala dependências descritas no arquivo requirements.txt
+python3 -m venv venv          # Cria o ambiente
+source venv/bin/activate      # Ativa o ambiente
+pip install --upgrade pip     # Atualiza o pip
+pip install -r requirements.txt  # Instala as dependências
 ```
 
 **Windows**
 ```bash
 python -m venv venv
-
 .\venv\Scripts\activate
-
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Dependências (requirements.txt):
+### Dependências (`requirements.txt`)
 
-#### Core dependencies
-<ol>
-    <li>bcrypt==4.1.2</li>
-    <li>pyfiglet==1.0.4</li>
-    <li>windows-curses==2.3.3  # necessário apenas no Windows</li>
-</ol>
+#### Core
+- `bcrypt==4.1.2`
+- `pyfiglet==1.0.4`
+- `windows-curses==2.3.3` *(necessário apenas no Windows)*
 
-#### PostgreSQL dependencies
-<ol>
-    <li>psycopg2-binary==2.9.9</li>
-    <li>SQLAlchemy==2.0.29</li>
-    <li>alembic==1.13.1</li>
-    <li>python-dotenv==1.0.0</li>
-</ol>
+#### PostgreSQL
+- `psycopg2-binary==2.9.9`
+- `SQLAlchemy==2.0.29`
+- `alembic==1.13.1`
+- `python-dotenv==1.0.0`
 
-Para instalar as dependências automaticamente e ter um feedback dinâmico rode:
+Para instalar as dependências automaticamente com feedback dinâmico:
+
 ```bash
-    python3 setup.py
+python3 setup.py
 ```
 
-### DockerFile
+---
 
-#### Contém informações de dependências
+### Dockerfile
 
-```bash
+```dockerfile
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -92,13 +89,13 @@ RUN apt-get update && apt-get install -y \
     libncursesw5-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia e instala as dependências do python
+# Copia e instala as dependências do Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Cria um usuário que não é root
+# Cria um usuário não-root
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 
@@ -106,26 +103,22 @@ USER appuser
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
-# Roda o programa
+# Inicia o programa
 CMD ["python", "main.py"]
 ```
 
+---
+
 ### Instalação do Docker
 
-#### Windows e macOS:
+#### Windows e macOS
 
-A forma mais simples é baixar o Docker Desktop:
+Baixe o **Docker Desktop** em [docker.com/products/docker-desktop](https://docker.com/products/docker-desktop) e siga as instruções do instalador.
 
-    Acesse o site oficial: docker.com/products/docker-desktop.
+> **Windows:** certifique-se de que o **WSL2** está ativado. O Docker Desktop já inclui o Docker Compose.
 
-    Baixe e siga as instruções do instalador.
+#### Linux (Ubuntu/Debian)
 
-    No Windows, certifique-se de que o WSL2 está ativado.
-    O Docker Desktop já inclui o Docker Compose por padrão.
-
-### Linux (Ubuntu/Debian):
-
-#### Execute os comandos no terminal:
 ```bash
 # Atualize e instale dependências
 sudo apt update
@@ -137,7 +130,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
   sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-# Adicione o repositório do Docker (PASSO QUE FALTAVA)
+# Adicione o repositório do Docker
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
   https://download.docker.com/linux/ubuntu \
@@ -149,42 +142,54 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-### Depois de Instalar o Docker:
+---
+
+### Subindo os serviços
+
 ```bash
 docker compose up -d
 ```
-Ou se você estiver usando o Visual Studio Code, abra o arquivo docker-compose.yml e instale a extensão que será recomendada, volte para o código .yml e você verá um botão escrito: "Run all services" clique nele.
+
+> Ou, no **VS Code**, abra o `docker-compose.yml`, instale a extensão recomendada e clique em **"Run all services"**.
+
+---
 
 ### Variáveis de Ambiente
-#### Você deve criar um arquivo .env e adicionar
 
-dotenv_exemplo:
-```bash
-# PostgreSQL Database Configuration
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
+```env
+# PostgreSQL
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=your_db
 POSTGRES_USER=your_user
 POSTGRES_PASSWORD=your_password
 
-# Connection Pool Settings (for high volume >1000 users)
+# Connection Pool (para alto volume, >1000 usuários)
 DB_POOL_MIN_CONNECTIONS=1
 DB_POOL_MAX_CONNECTIONS=20
-DB_POOL_TIMEOUT=30  # seconds
-DB_POOL_RECYCLE=3600  # seconds (1 hour)
+DB_POOL_TIMEOUT=30       # segundos
+DB_POOL_RECYCLE=3600     # segundos (1 hora)
 
-# Application Settings
-APP_ENV=development  # development, testing, production
+# Aplicação
+APP_ENV=development      # development, testing, production
 APP_DEBUG=True
 
-# Security Settings
+# Segurança
 BCRYPT_ROUNDS=12
 ```
 
-### App.log
-#### Todas as mensagens de erro e debug são direcionadas para este arquivo
+---
 
-### Para rodar o projeto: 
+### Logs
+
+Todas as mensagens de erro e debug são registradas no arquivo `app.log`.
+
+---
+
+### Rodando o projeto
+
 ```bash
 python3 main.py
 ```
