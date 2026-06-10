@@ -2,7 +2,7 @@ import hashlib
 import secrets
 from datetime import datetime, timedelta
 
-from smartru.utils.util import Util
+from utils.util import Util
 
 
 class TokenUtils(Util):

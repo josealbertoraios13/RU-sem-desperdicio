@@ -6,17 +6,17 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 # Notification system
-from smartru.notification import notification_router
-from smartru.notification import start_scheduler as start_notification_scheduler
-from smartru.paths import PROJECT_ROOT
-from smartru.routers import (
+from notification import notification_router
+from notification import start_scheduler as start_notification_scheduler
+from paths import PROJECT_ROOT
+from routers import (
     menu_router,
     report_router,
     schedule_router,
     seed_router,
     user_router,
 )
-from smartru.utils.logger import logger
+from utils.logger import logger
 
 load_dotenv(PROJECT_ROOT / ".env")
 
@@ -61,7 +61,7 @@ def run_seeds_on_startup():
         return
     try:
         logger.info("Auto-executando seeds na inicialização...")
-        from smartru.seeders.seeder_runner import get_seeder_runner_with_pool
+        from seeders.seeder_runner import get_seeder_runner_with_pool
 
         result = get_seeder_runner_with_pool().run_all()
         logger.info(f"Seeds finalizados: {result}")

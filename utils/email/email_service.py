@@ -1,9 +1,10 @@
 import os
 import smtplib
+
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from smartru.utils.logger import logger
+from utils.logger import logger
 
 
 class EmailService:

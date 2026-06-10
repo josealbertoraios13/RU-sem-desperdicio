@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
 
-from smartru.repository.repository import Repository
-from smartru.utils import logger
-from smartru.utils.security.token_utils import TokenUtils
+from repository.repository import Repository
+from utils import logger
+from utils.security.token_utils import TokenUtils
 
 
 class PasswordResetTokenRepository(Repository):

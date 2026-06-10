@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from smartru.model import (
+from model import (
     DeleteRequest,
     LoginRequest,
     PasswordRecoverRequest,
@@ -9,7 +9,7 @@ from smartru.model import (
     User,
     UserRequest,
 )
-from smartru.services import UserService
+from services import UserService
 
 router = APIRouter()
 user_services = UserService()

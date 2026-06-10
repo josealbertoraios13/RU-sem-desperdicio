@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from smartru.repository.repository import Repository
-from smartru.repository.user.password_reset_token_repository import PasswordResetTokenRepository
-from smartru.utils import RepositoryUtils, logger
-from smartru.utils.email.email_service import EmailService
+from repository.repository import Repository
+from repository.user.password_reset_token_repository import PasswordResetTokenRepository
+from utils import RepositoryUtils, logger
+from utils.email.email_service import EmailService
 
 
 class UserRepository(Repository):

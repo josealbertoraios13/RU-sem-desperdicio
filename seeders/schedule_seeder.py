@@ -8,8 +8,8 @@ Pode ser executado independentemente dos outros seeds.
 from datetime import date, timedelta
 from typing import Any
 
-from smartru.seeders.base_seeder import BaseSeeder
-from smartru.utils.logger import logger
+from seeders.base_seeder import BaseSeeder
+from utils.logger import logger
 
 
 class ScheduleSeeder(BaseSeeder):

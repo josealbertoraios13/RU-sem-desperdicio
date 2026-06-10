@@ -4,8 +4,8 @@ from contextlib import contextmanager
 from dotenv import load_dotenv
 from psycopg2 import pool
 
-from smartru.paths import PROJECT_ROOT, SCHEMA_SQL
-from smartru.utils import logger
+from paths import PROJECT_ROOT, SCHEMA_SQL
+from utils import logger
 
 load_dotenv(PROJECT_ROOT / ".env")
 

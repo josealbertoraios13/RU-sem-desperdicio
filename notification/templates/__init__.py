@@ -1,4 +1,4 @@
-from smartru.notification.templates.render import (
+from notification.templates.render import (
     get_all_templates,
     render_daily_reminder_email,
     render_daily_reminder_push,

@@ -2,10 +2,10 @@ from datetime import date
 
 from fastapi import HTTPException
 
-from smartru.model import Schedule
-from smartru.repository import ScheduleRepository, UserRepository
-from smartru.services.service import Service
-from smartru.utils import ReportUtils, ScheduleUtils, UserUtils
+from model import Schedule
+from repository import ScheduleRepository, UserRepository
+from services.service import Service
+from utils import ReportUtils, ScheduleUtils, UserUtils
 
 
 class ScheduleService(Service):

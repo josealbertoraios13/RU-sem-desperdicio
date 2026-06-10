@@ -1,0 +1,92 @@
+2026-06-10 14:56:47,815 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:56:47,815 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:57:21,389 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:57:21,389 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:57:21,425 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:57:21,428 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-10 14:57:48,719 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:57:48,719 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:57:48,756 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:57:58,269 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:57:58,269 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:57:58,303 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:07,448 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:07,448 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:58:07,487 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:16,905 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:16,906 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:58:16,943 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:24,324 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:24,325 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:58:24,358 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:36,078 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:36,078 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:58:36,112 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:46,085 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:46,085 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:58:46,113 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:55,490 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:58:55,490 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:58:55,524 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:59:05,303 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:59:05,303 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:59:05,338 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:59:05,390 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-10 14:59:05,390 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-10 14:59:05,391 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-10 14:59:05,392 - apscheduler.scheduler - INFO - Added job "Lembrete diário do RU (11:00)" to job store "default"
+2026-06-10 14:59:05,393 - apscheduler.scheduler - INFO - Added job "Retry de notificações falhas" to job store "default"
+2026-06-10 14:59:05,393 - apscheduler.scheduler - INFO - Added job "Lembrete de agendamento (a cada 5min)" to job store "default"
+2026-06-10 14:59:05,393 - apscheduler.scheduler - INFO - Scheduler started
+2026-06-10 14:59:05,395 - utils.logger - INFO - APScheduler iniciado com sucesso! Jobs: daily_reminder (11:00 BRT), retry_cleanup (a cada 15min)
+2026-06-10 14:59:05,400 - utils.logger - ERROR - Falha na inicialização da conexão com PostgreSQL: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,401 - utils.logger - ERROR - Error in get_last_job_of_type: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,401 - utils.logger - INFO - No daily reminder job found. Executing recovery now...
+2026-06-10 14:59:05,401 - utils.logger - INFO - APScheduler: executing daily reminder job
+2026-06-10 14:59:05,403 - utils.logger - ERROR - Falha na inicialização da conexão com PostgreSQL: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,405 - utils.logger - ERROR - Error in get_target_users: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,405 - utils.logger - WARNING - daily_reminder: no target users found
+2026-06-10 14:59:05,405 - utils.logger - INFO - APScheduler: daily reminder result — Nenhum usuário alvo encontrado
+2026-06-10 14:59:05,405 - utils.logger - INFO - Sistema de notificações agendadas iniciado com sucesso!
+2026-06-10 14:59:05,812 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:59:05,812 - utils.logger - WARNING - SMTP_HOST not configured. Email sending will be simulated.
+2026-06-10 14:59:05,842 - utils.logger - WARNING - FCM not configured (FCM_SERVER_KEY or FCM_CREDENTIALS_PATH). Push notifications will be disabled.
+2026-06-10 14:59:05,887 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-10 14:59:05,887 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-10 14:59:05,888 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-06-10 14:59:05,888 - apscheduler.scheduler - INFO - Added job "Lembrete diário do RU (11:00)" to job store "default"
+2026-06-10 14:59:05,888 - apscheduler.scheduler - INFO - Added job "Retry de notificações falhas" to job store "default"
+2026-06-10 14:59:05,888 - apscheduler.scheduler - INFO - Added job "Lembrete de agendamento (a cada 5min)" to job store "default"
+2026-06-10 14:59:05,888 - apscheduler.scheduler - INFO - Scheduler started
+2026-06-10 14:59:05,889 - utils.logger - INFO - APScheduler iniciado com sucesso! Jobs: daily_reminder (11:00 BRT), retry_cleanup (a cada 15min)
+2026-06-10 14:59:05,890 - utils.logger - ERROR - Falha na inicialização da conexão com PostgreSQL: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,890 - utils.logger - ERROR - Error in get_last_job_of_type: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,890 - utils.logger - INFO - No daily reminder job found. Executing recovery now...
+2026-06-10 14:59:05,890 - utils.logger - INFO - APScheduler: executing daily reminder job
+2026-06-10 14:59:05,892 - utils.logger - ERROR - Falha na inicialização da conexão com PostgreSQL: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,892 - utils.logger - ERROR - Error in get_target_users: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:05,892 - utils.logger - WARNING - daily_reminder: no target users found
+2026-06-10 14:59:05,892 - utils.logger - INFO - APScheduler: daily reminder result — Nenhum usuário alvo encontrado
+2026-06-10 14:59:05,892 - utils.logger - INFO - Sistema de notificações agendadas iniciado com sucesso!
+2026-06-10 14:59:07,381 - utils.logger - INFO - Auto-executando seeds na inicialização...
+2026-06-10 14:59:07,384 - utils.logger - ERROR - Falha na inicialização da conexão com PostgreSQL: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:07,384 - utils.logger - ERROR - Erro na auto-execução de seeds: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:07,885 - utils.logger - INFO - Auto-executando seeds na inicialização...
+2026-06-10 14:59:07,888 - utils.logger - ERROR - Falha na inicialização da conexão com PostgreSQL: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+
+2026-06-10 14:59:07,888 - utils.logger - ERROR - Erro na auto-execução de seeds: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "jose-alberto" does not exist
+

@@ -14,7 +14,7 @@ from typing import Any
 
 from psycopg2 import pool
 
-from smartru.utils.logger import logger
+from utils.logger import logger
 
 
 class BaseSeeder(ABC):

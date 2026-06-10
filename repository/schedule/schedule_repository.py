@@ -1,7 +1,7 @@
 from datetime import date
 
-from smartru.repository.repository import Repository
-from smartru.utils import logger
+from repository.repository import Repository
+from utils import logger
 
 
 class ScheduleRepository(Repository):

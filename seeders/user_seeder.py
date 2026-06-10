@@ -10,9 +10,9 @@ Idempotente: verifica CPF antes de inserir.
 
 from typing import Any
 
-from smartru.seeders.base_seeder import BaseSeeder
-from smartru.utils.logger import logger
-from smartru.utils.repository.repository_utils import RepositoryUtils
+from seeders.base_seeder import BaseSeeder
+from utils.logger import logger
+from utils.repository.repository_utils import RepositoryUtils
 
 # Dados fornecidos para seeding
 STUDENTS_DATA = [
@@ -56,7 +56,7 @@ EMPLOYEES_DATA = [
 ]
 
 # Senhas padrão por tipo de usuário
-DEFAULT_PASSWORD = "SmartRU2026!"
+DEFAULT_PASSWORD = "026!"
 
 
 class UserSeeder(BaseSeeder):

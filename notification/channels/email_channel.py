@@ -9,9 +9,9 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from smartru.notification.channels.base import NotificationChannel
-from smartru.utils import logger
-from smartru.utils.email.email_service import EmailService
+from notification.channels.base import NotificationChannel
+from utils import logger
+from utils.email.email_service import EmailService
 
 
 class EmailNotificationChannel(NotificationChannel):

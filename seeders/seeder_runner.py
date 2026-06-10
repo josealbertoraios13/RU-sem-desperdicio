@@ -11,10 +11,10 @@ Responsável por:
 import os
 from typing import Any
 
-from smartru.seeders.base_seeder import BaseSeeder
-from smartru.seeders.schedule_seeder import ScheduleSeeder
-from smartru.seeders.user_seeder import UserSeeder
-from smartru.utils.logger import logger
+from seeders.base_seeder import BaseSeeder
+from seeders.schedule_seeder import ScheduleSeeder
+from seeders.user_seeder import UserSeeder
+from utils.logger import logger
 
 
 class SeederRunner:
@@ -210,7 +210,7 @@ def get_seeder_runner(connection_pool=None) -> SeederRunner:
 
 def get_seeder_runner_with_pool() -> SeederRunner:
     """Retorna o runner com o pool PostgreSQL inicializado (uso em HTTP e startup)."""
-    from smartru.repository.repository import Repository
+    from repository.repository import Repository
 
     repository = Repository()
     repository._ensure_pool()

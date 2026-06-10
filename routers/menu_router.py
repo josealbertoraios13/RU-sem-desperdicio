@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends, File, HTTPException, Security, UploadFil
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from smartru.services import MenuService
-from smartru.utils import logger
+from services import MenuService
+from utils import logger
 
 router = APIRouter(prefix="/menu", tags=["menu"])
 menu_service = MenuService()

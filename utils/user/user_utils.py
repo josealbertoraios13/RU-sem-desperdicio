@@ -1,6 +1,6 @@
 import re
 
-from smartru.utils.util import Util
+from utils.util import Util
 
 
 class UserUtils(Util):

@@ -1,8 +1,8 @@
 
 from fastapi import APIRouter, Query
 
-from smartru.model import Schedule, ScheduleDeleteRequest, ScheduleRequest, ScheduleUpdateRequest
-from smartru.services import ScheduleService
+from model import Schedule, ScheduleDeleteRequest, ScheduleRequest, ScheduleUpdateRequest
+from services import ScheduleService
 
 router = APIRouter()
 schedule_service = ScheduleService()

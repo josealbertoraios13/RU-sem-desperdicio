@@ -1,5 +1,5 @@
-from smartru.repository.repository import Repository
-from smartru.utils import logger
+from repository.repository import Repository
+from utils import logger
 
 SCHEDULE_DEMAND_KEYS = ("lunch", "dinner")
 MEAL_DEMAND_KEYS = ("select", "leve_sabor", "essencial")

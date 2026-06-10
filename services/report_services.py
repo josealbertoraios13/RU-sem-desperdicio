@@ -1,9 +1,9 @@
 import csv
 from io import StringIO
 
-from smartru.repository import ReportRepository
-from smartru.services.service import Service
-from smartru.utils import ReportUtils
+from repository import ReportRepository
+from services.service import Service
+from utils import ReportUtils
 
 
 class ReportServices(Service):

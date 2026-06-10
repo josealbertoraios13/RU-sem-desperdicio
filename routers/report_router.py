@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query, Response
 
-from smartru.services import ReportServices
+from services import ReportServices
 
 router = APIRouter()
 report_services = ReportServices()

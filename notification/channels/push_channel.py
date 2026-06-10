@@ -10,8 +10,8 @@ Falls back gracefully if FCM is not configured.
 import json
 import os
 
-from smartru.notification.channels.base import NotificationChannel
-from smartru.utils import logger
+from notification.channels.base import NotificationChannel
+from utils import logger
 
 
 class PushChannel(NotificationChannel):
@@ -111,7 +111,7 @@ class PushChannel(NotificationChannel):
                 "android": {
                     "priority": "high",
                     "notification": {
-                        "channel_id": "smartru_daily_reminder",
+                        "channel_id": "daily_reminder",
                         "click_action": "OPEN_MAIN_ACTIVITY",
                     },
                 },

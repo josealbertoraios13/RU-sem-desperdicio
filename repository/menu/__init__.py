@@ -1,3 +1,3 @@
-from smartru.repository.menu.menu_repository import MenuRepository
+from repository.menu.menu_repository import MenuRepository
 
 __all__ = ["MenuRepository"]

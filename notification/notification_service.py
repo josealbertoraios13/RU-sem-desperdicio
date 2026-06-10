@@ -1,11 +1,11 @@
 from datetime import UTC, datetime
 from enum import StrEnum
 
-from smartru.notification.channels.email_channel import (
+from notification.channels.email_channel import (
     EmailNotificationChannel,
 )
-from smartru.notification.channels.push_channel import PushChannel
-from smartru.notification.templates.render import (
+from notification.channels.push_channel import PushChannel
+from notification.templates.render import (
     render_daily_reminder_email,
     render_daily_reminder_push,
     render_queue_collaboration_email,
@@ -13,11 +13,11 @@ from smartru.notification.templates.render import (
     render_schedule_reminder_email,
     render_schedule_reminder_push,
 )
-from smartru.repository.notification.notification_repository import (
+from repository.notification.notification_repository import (
     NotificationRepository,
 )
-from smartru.services.service import Service
-from smartru.utils import logger
+from services.service import Service
+from utils import logger
 
 
 class NotificationType(StrEnum):

@@ -5,10 +5,10 @@ from typing import Protocol
 
 from fastapi import HTTPException
 
-from smartru.paths import PROJECT_ROOT, UPLOADS_MENU_DIR, WRITABLE_UPLOADS_MENU_DIR
-from smartru.repository import MenuRepository
-from smartru.services.service import Service
-from smartru.utils import MenuUtils, logger
+from paths import PROJECT_ROOT, UPLOADS_MENU_DIR, WRITABLE_UPLOADS_MENU_DIR
+from repository import MenuRepository
+from services.service import Service
+from utils import MenuUtils, logger
 
 
 class MenuStorageProvider(Protocol):

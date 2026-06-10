@@ -7,8 +7,8 @@ import os
 from fastapi import APIRouter, Depends, HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from smartru.seeders.seeder_runner import SeederRunner, get_seeder_runner_with_pool
-from smartru.utils.logger import logger
+from seeders.seeder_runner import SeederRunner, get_seeder_runner_with_pool
+from utils.logger import logger
 
 router = APIRouter(prefix="/seed", tags=["seed"])
 security = HTTPBearer(auto_error=False)

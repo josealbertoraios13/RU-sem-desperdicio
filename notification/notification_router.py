@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 
-from smartru.notification.models import DeviceTokenRequest, QueueCollaborationRequest
-from smartru.notification.notification_service import (
+from notification.models import DeviceTokenRequest, QueueCollaborationRequest
+from notification.notification_service import (
     NotificationService,
 )
-from smartru.utils.rate_limiter import RateLimiter
+from utils.rate_limiter import RateLimiter
 
 router = APIRouter()
 notification_service = NotificationService()

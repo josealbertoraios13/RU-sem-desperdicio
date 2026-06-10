@@ -17,10 +17,10 @@ Time zone: America/Sao_Paulo (BRT, used by UFRPE)
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from smartru.notification.notification_service import (
+from notification.notification_service import (
     NotificationService,
 )
-from smartru.utils import logger
+from utils import logger
 
 _scheduler: BackgroundScheduler | None = None
 _service = NotificationService()

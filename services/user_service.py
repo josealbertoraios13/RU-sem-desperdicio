@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from smartru.model import User
-from smartru.repository import UserRepository
-from smartru.services.service import Service
-from smartru.utils import UserUtils
+from model import User
+from repository import UserRepository
+from services.service import Service
+from utils import UserUtils
 
 
 class UserService(Service):

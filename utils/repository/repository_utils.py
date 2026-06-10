@@ -1,6 +1,6 @@
 import bcrypt
 
-from smartru.utils.logger import logger
+from utils.logger import logger
 
 
 class RepositoryUtils:

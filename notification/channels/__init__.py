@@ -1,6 +1,6 @@
-from smartru.notification.channels.base import NotificationChannel
-from smartru.notification.channels.email_channel import EmailNotificationChannel
-from smartru.notification.channels.push_channel import PushChannel
+from notification.channels.base import NotificationChannel
+from notification.channels.email_channel import EmailNotificationChannel
+from notification.channels.push_channel import PushChannel
 
 __all__ = [
     "NotificationChannel",
