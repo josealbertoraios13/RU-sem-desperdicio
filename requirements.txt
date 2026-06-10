@@ -1,10 +1,27 @@
 # Core dependencies
 bcrypt==4.1.2
-curses-menu==0.6.2
 pyfiglet==1.0.4
+fastapi==0.115.0
+python-multipart==0.0.9
+uvicorn==0.30.0
+pydantic[email]==2.13.3
 
-# PostgreSQL dependencies
+# PostgreSQL
 psycopg2-binary==2.9.9
-SQLAlchemy==2.0.29
-alembic==1.13.1
 python-dotenv==1.0.0
+
+# Scheduler for notification system
+APScheduler==3.10.4
+
+# HTTP client for testing
+httpx
+
+# AWS S3 storage
+boto3==1.34.162
+
+# Firebase Cloud Messaging
+google-auth
+google-auth-httplib2
+firebase-admin
+# SmartRU package (editable install — auto-configures git hooks)
+-e .
